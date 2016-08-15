@@ -20,8 +20,11 @@ Access App Directly on: http://evening-inlet-82305.herokuapp.com/#/?_k=5ezr9x
 ********************************************************************************
 ********************************************************************************
 
-NPM Command for Testing Tools (Don't require as it is included in package.json)
-npm install karma@0.13.22 karma-chrome-launcher@0.2.2 karma-mocha@0.2.2 karma-mocha-reporter@2.0.0 karma-sourcemap-loader@0.3.7 karma-webpack@1.7.0 mocha@2.4.5 expect@1.14.0 --save-dev
+NPM Command for Tools (Don't require as it is included in package.json)
+1. npm install karma@0.13.22 karma-chrome-launcher@0.2.2 karma-mocha@0.2.2 karma-mocha-reporter@2.0.0 karma-sourcemap-loader@0.3.7 karma-webpack@1.7.0 mocha@2.4.5 expect@1.14.0 --save-dev
+
+2. npm install react-addons-test-utils@0.14.7 --save-dev
+Note: This has to match with version of react and react dom. In this case, it is 0.14.7 (can be found in package.json) 
 
 ********************************************************************************
 ********************************************************************************
