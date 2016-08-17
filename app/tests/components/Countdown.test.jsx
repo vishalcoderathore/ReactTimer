@@ -38,6 +38,16 @@ describe('Countdown', () => {
       }, 4000);
     });
 
+    it('should not decrease with seconds > 3599', (done) => {
+      var countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(36001);
+
+      setTimeout(() => {
+        expect(countdown.state.count).toBeGreaterThan(3599);
+        done();
+      }, 1001);
+    });
+
     it('should pause countdown on paused status', (done) => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
       countdown.handleSetCountdown(3);

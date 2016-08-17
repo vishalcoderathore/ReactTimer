@@ -26,18 +26,24 @@ var Timer = React.createClass({
          break;
        }
      }
-
   },
   componentWillUnmount : function(){
       clearInterval(this.timer)
   },
   handleStart : function(){
-      this.timer = setInterval(() => {
-        this.setState({
-          count : this.state.count + 1
-        });
-      }, 1000);
-  },
+
+       this.timer = setInterval(() => {
+         var upperLimit = this.state.count + 1;
+         if(upperLimit < 3600){
+           this.setState({
+             count : this.state.count + 1
+           });
+         }
+         else{
+           this.handleStatusChange('stopped');
+         }
+       }, 1000);
+   },
   handleStatusChange : function(newTimerStatus){
     this.setState({
       timerStatus: newTimerStatus
