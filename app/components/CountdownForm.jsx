@@ -1,7 +1,10 @@
 var React = require('react');
 
 var CountdownForm = React.createClass({
-  onSubmit : function(e){
+  getInitialState: function() {
+    return {errorMessage: ''}
+  },
+  onSubmit: function(e) {
     e.preventDefault();
     var strSeconds = this.refs.seconds.value;
 
@@ -13,28 +16,26 @@ var CountdownForm = React.createClass({
     *  ^[0-9]*$ => $ lets RE know that, it will end with 0-9
     */
     var errorMessage;
-    if(strSeconds.match(/^[0-9]*$/) && parseInt(strSeconds) < 3600){
+    if (strSeconds.match(/^[0-9]*$/) && parseInt(strSeconds) < 3600) {
       this.refs.seconds.value = '';
       this.props.onSetCountdown(parseInt(strSeconds, 10));
-    }
-    else if(strSeconds.match(/^[0-9]*$/) && parseInt(strSeconds) > 3599){
+    } else if (strSeconds.match(/^[0-9]*$/) && parseInt(strSeconds) > 3599) {
       this.refs.seconds.value = '';
       errorMessage = "Error : Please enter seconds less than 3600"
-    }
-    else{
+    } else {
       this.refs.seconds.value = '';
       errorMessage = "Error : Please enter valid input"
     }
-    document.getElementById("errorMessageId").innerHTML = errorMessage;
+    this.setState({errorMessage})
   },
 
-  render: function(){
-    return(
+  render: function() {
+    return (
       <div>
-        <form ref = "form" onSubmit = {this.onSubmit} className = "countdown-form">
-          <input type="text" placeholder = "Enter time in seconds" ref ="seconds"/>
-          <button className = "button expanded">Start</button>
-          <h4 id = "errorMessageId" className = "page-title"></h4>
+        <form ref="form" onSubmit={this.onSubmit} className="countdown-form">
+          <input type="text" placeholder="Enter time in seconds" ref="seconds"/>
+          <button className="button expanded">Start</button>
+          <h4 id="errorMessageId" className="page-title">{this.state.errorMessage}</h4>
         </form>
       </div>
     );
